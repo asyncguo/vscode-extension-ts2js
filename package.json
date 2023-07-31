@@ -20,10 +20,10 @@
       }
     ],
     "menus": {
-      "explorer/context": [
+      "editor/context": [
         {
           "command": "vscode-extension-ts2js.ts2js",
-          "group": "7_modification"
+          "group": "1_modification"
         }
       ]
     }

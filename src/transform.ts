@@ -1,22 +1,21 @@
 import * as swc from '@swc/core'
-import * as fs from 'node:fs/promises'
 
-export default async function transform(path: string) {
-    try {
-        const { code } = await swc.transformFile(
-            path,
-            {
-                jsc: {
-                    parser: {
-                        syntax: "typescript"
-                    },
-                    target: 'esnext'
-                }
-            }
-        )
+export default async function transform(sourceCode: string): Promise<string> {
+	try {
+		const { code } = await swc.transform(
+			sourceCode,
+			{
+				jsc: {
+					parser: {
+						syntax: "typescript"
+					},
+					target: 'esnext'
+				}
+			}
+		)
 
-        await fs.writeFile(path, code)
-    } catch (error) {
-        throw error
-    }
+		return code
+	} catch (error) {
+		return Promise.reject(error)
+	}
 }
