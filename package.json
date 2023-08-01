@@ -3,13 +3,14 @@
   "publisher": "asyncguo",
   "displayName": "ts2js",
   "description": "Convert ts to js quickly",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.80.0"
   },
   "categories": [
     "Other"
   ],
+  "icon": "./images/icon.png",
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
