@@ -1,21 +1,17 @@
-import * as swc from '@swc/core'
+import * as ts from "typescript";
 
-export default async function transform(sourceCode: string): Promise<string> {
-	try {
-		const { code } = await swc.transform(
-			sourceCode,
-			{
-				jsc: {
-					parser: {
-						syntax: "typescript"
-					},
-					target: 'esnext'
-				}
+export default function transform(sourceCode: string): string {
+  try {
+    const result = ts.transpileModule(sourceCode, {
+			compilerOptions: {
+				jsx: ts.JsxEmit.Preserve,
+				target: ts.ScriptTarget.ESNext,
+				importsNotUsedAsValues: ts.ImportsNotUsedAsValues.Preserve
 			}
-		)
+		});
 
-		return code
-	} catch (error) {
-		return Promise.reject(error)
-	}
+    return result.outputText;
+  } catch (error) {
+    throw error;
+  }
 }
